@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<br />
+<br />
+
+<br />
+<br />
+<label id="Signal1">Signal1</label>
+<button type="button" onclick="changeTraffic('1')">Start </button><br />
+<label id="Signal2">Signal2</label>
+<button type="button" onclick="changeTraffic('2')">Start </button><br />
+<label id="Signal3">Signal3</label>
+<button type="button" onclick="changeTraffic('3')">Start </button><br />
+<label id="Signal4">Signal4</label>
+<button type="button" onclick="changeTraffic('4')">Start </button><br />
+
+@*<button type="button" onclick="changeTraffic()">Start Sequence</button>*@
+<script>
+    var int = 0;
+    $(document).ready(function () {
+        slide();
+    });
+    function changeTraffic(num) {
+        clearInterval(int);
+        int = window.setInterval(function () {
+          
+            if (num > 4) {
+                num = 1;
+            }
+            if (num == 1) {
+                singnal1On();
+            }
+            else if (num == 2) {
+                singnal2On();
+            }
+            else if (num == 3) {
+                singnal3On();
+            }
+            else {
+                singnal4On();
+            }
+            num = ++num
+        }, 4000);
+        //window.setInterval(function () {
+
+        //}, 3000); // re       
+    }
+    function singnal1On() {
+        $("#Signal1").css("background-color", "green");
+        $("#Signal2").css("background-color", "red");
+        $("#Signal3").css("background-color", "red");
+        $("#Signal4").css("background-color", "red");
+    }
+    function singnal2On() {
+        $("#Signal1").css("background-color", "red");
+        $("#Signal2").css("background-color", "green");
+        $("#Signal3").css("background-color", "red");
+        $("#Signal4").css("background-color", "red");
+    }
+    function singnal3On() {
+        $("#Signal1").css("background-color", "red");
+        $("#Signal2").css("background-color", "red");
+        $("#Signal3").css("background-color", "green");
+        $("#Signal4").css("background-color", "red");
+    }
+    function singnal4On() {
+        $("#Signal1").css("background-color", "red");
+        $("#Signal2").css("background-color", "red");
+        $("#Signal3").css("background-color", "red");
+        $("#Signal4").css("background-color", "green");
+    }
+    function slide() {
+        var num = 0;
+     int= window.setInterval(function () {
+            num = ++num
+            if (num > 4) {
+                num = 1;
+            }
+            if (num == 1) {
+                singnal1On();
+            }
+            else if (num == 2) {
+                singnal2On();
+            }
+            else if (num == 3) {
+                singnal3On();
+            }
+            else {
+                singnal4On();
+            }
+        }, 4000); // repeat forever, polling every 3 seconds
+    }
+</script>
